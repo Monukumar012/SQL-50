@@ -1,0 +1,29 @@
+// QUESTION
+Table: Weather
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| id            | int     |
+| recordDate    | date    |
+| temperature   | int     |
++---------------+---------+
+id is the column with unique values for this table.
+This table contains information about the temperature on a certain day.
+ 
+
+Write a solution to find all dates' Id with higher temperatures compared to its previous dates (yesterday).
+
+//ANSWER
+
+SELECT w1.id
+FROM Weather AS w1, Weather AS w2
+WHERE DATEDIFF(w1.recordDate,w2.recordDate)=1 AND w1.temperature > w2.
+
+// DATEDIFF - used to calculate the diff b/w dates
+
+SELECT w1.id 
+FROM Weather AS w1,Weather AS w2
+WHERE w1.recordDate = DATE_ADD(w2.recordDate, INTERVAL 1 DAY)
+AND w1.temperature > w2.temperature;
+
+//DATE_ADD used to add day/month/year in date
